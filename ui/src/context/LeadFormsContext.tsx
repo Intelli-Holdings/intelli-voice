@@ -22,6 +22,9 @@ interface LeadFormsContextValue {
 
 const LeadFormsContext = createContext<LeadFormsContextValue | null>(null);
 
+// Intelli build: keep the upstream post-signup lead form switched off.
+const SHOW_ONBOARDING_FORM = false;
+
 export function LeadFormsProvider({ children }: { children: ReactNode }) {
   const [hireOpen, setHireOpen] = useState(false);
   const [enterpriseOpen, setEnterpriseOpen] = useState(false);
@@ -57,7 +60,9 @@ export function LeadFormsProvider({ children }: { children: ReactNode }) {
     }
 
     onboardingCheckedRef.current = true;
-    if (onboardingDoneRef.current) return; // already done — never show
+    // Intelli build: the upstream onboarding form submits to Dograh's lead
+    // service, so it is never shown (SHOW_ONBOARDING_FORM is false).
+    if (!SHOW_ONBOARDING_FORM || onboardingDoneRef.current) return;
 
     // Only brand-new users (no workflows yet) see the form. The count is
     // org-scoped (the user's selected organization), so a new user joining an

@@ -12,16 +12,16 @@ import type { ReactNode } from "react";
 import { BrandLogo } from "@/components/BrandLogo";
 
 const HIGHLIGHTS = [
-  "Speech-to-speech",
-  "MCP-native",
-  "BYOK - any model",
+  "Inbound and outbound calls",
+  "Your numbers, your carrier",
+  "Bring your own models",
 ];
 
 export function AuthShell({
   children,
-  enterpriseSlot,
 }: {
   children: ReactNode;
+  /** Accepted for upstream compatibility; not rendered in the Intelli build. */
   enterpriseSlot?: ReactNode;
 }) {
   return (
@@ -55,7 +55,7 @@ export function AuthShell({
 
         <div className="relative max-w-md space-y-5">
           <h1 className="text-3xl font-semibold leading-tight tracking-tight text-zinc-50 xl:text-4xl">
-            The open-source voice AI platform.
+            AI voice agents that answer, call and qualify for you.
           </h1>
           <ul className="flex flex-wrap gap-2">
             {HIGHLIGHTS.map((point) => (
@@ -69,18 +69,10 @@ export function AuthShell({
           </ul>
         </div>
 
-        {/* Enterprise CTA block (Bland-style) — bottom margin lifts it off the
-            viewport edge while justify-between keeps the column layout */}
-        <div className="relative mb-12 max-w-md space-y-3 rounded-xl border border-white/10 bg-white/[0.03] p-5 xl:mb-16">
-          <h2 className="text-sm font-semibold text-zinc-100">
-            Need on-prem, data residency &amp; a data perimeter?
-          </h2>
-          <p className="text-sm text-zinc-400">
-            We deploy Dograh inside your environment for regulated and
-            high-scale teams.
-          </p>
-          {enterpriseSlot}
-        </div>
+        {/* Footer note (replaces the upstream enterprise lead CTA) */}
+        <p className="relative mb-12 text-sm text-zinc-400 xl:mb-16">
+          Part of the Intelli customer engagement platform.
+        </p>
       </aside>
     </div>
   );
